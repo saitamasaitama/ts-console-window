@@ -1,4 +1,5 @@
 import * as Common from "./Common"
+import { Color } from "./includes";
 
 
 export function MoveTo(x: number, y: number) {
@@ -26,12 +27,26 @@ export function Clear() {
 export function Fill(c: string, rect: Common.Rect) {
 
   for (var y = 0; y < rect.height; y++) {
-    for (var x = 0; x < rect.width; x++) {
+    for (var x = 0; x < rect.width >> 1; x++) {
       //
       MoveTo(x, y);
       process.stdout.write(c);
     }
   }
+
+  SetColor(Color.GREEN);
+  SetBackgroundColor(Color.RED);
+
+  for (var y = 0; y < rect.height; y++) {
+    for (var x = rect.width >> 1; x < rect.width; x++) {
+      //
+      MoveTo(x, y);
+      process.stdout.write(c);
+    }
+  }
+
+
+  process.stdout.write(`[${rect.width}:${rect.height}]`);
 }
 
 export function Blit() {

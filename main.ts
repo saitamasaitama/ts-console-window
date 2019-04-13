@@ -11,11 +11,14 @@ import { Screen } from "./Screen";
 
 Consoler.Clear();
 
+/* 
+windowsの時は
+echo 'exec winpty bash' >> ~/.bash_profile */
 process.stdin.setRawMode(true);
-//process.stdin.isRaw = true;
+
 
 process.stdin.on("data", ($k) => {
-  //if ($k === '\u0003') {
+
   if ($k == '\u0003') {
     process.exit();
   }
@@ -28,6 +31,10 @@ process.stdin.on("data", ($k) => {
 var $s = new Screen();
 
 $s.Clear();
+
+console.dir(
+  process.argv
+);
 
 setTimeout(() => {
   process.exit(2);
