@@ -1,0 +1,26 @@
+{
+  "name": "console-controll",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@types/node": "^11.13.4",
+    "@types/typescript": "^2.0.0",
+    "typescript": "^3.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node main.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saitamasaitama/ts-console-window.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saitamasaitama/ts-console-window/issues"
+  },
+  "homepage": "https://github.com/saitamasaitama/ts-console-window#readme"
+}
