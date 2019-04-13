@@ -1,4 +1,5 @@
-import { execSync } from 'child_process'
+
+//import * as process from "process"
 import * as tty from "tty"
 //import * as Consoler from "./includes"
 
@@ -7,11 +8,12 @@ import * as Common from "./Common"
 import { setInterval } from 'timers';
 import { Screen } from "./Screen";
 
-var width: number = parseInt(execSync("tput cols").toString());
-var height: number = parseInt(execSync("tput lines").toString());
 
 Consoler.Clear();
+
 process.stdin.setRawMode(true);
+//process.stdin.isRaw = true;
+
 process.stdin.on("data", ($k) => {
   //if ($k === '\u0003') {
   if ($k == '\u0003') {
@@ -21,8 +23,6 @@ process.stdin.on("data", ($k) => {
 });
 
 
-Consoler.MoveTo(0, height);
-Consoler.MoveTo(0, 0);
 
 
 var $s = new Screen();
