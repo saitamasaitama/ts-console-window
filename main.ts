@@ -11,7 +11,7 @@ import { Screen } from "./Screen";
 
 Consoler.Clear();
 
-/* 
+/*
 windowsの時は
 echo 'exec winpty bash' >> ~/.bash_profile */
 process.stdin.setRawMode(true);
@@ -30,11 +30,7 @@ process.stdin.on("data", ($k) => {
 
 var $s = new Screen();
 
-$s.Clear();
-
-console.dir(
-  process.argv
-);
+$s.Refresh();
 
 setTimeout(() => {
   process.exit(2);

@@ -18,6 +18,7 @@ export interface Rect {
   height: number,
 }
 
+
 export interface Renderer {
   RenderHeader(),
   RenderBody(),
@@ -51,4 +52,10 @@ export enum Color {
   PURPLE = 5,
   CYAN = 6,
   WHITE = 7
+}
+
+export enum Align{
+  LEFT,
+  RIGHT,
+  CENTER
 }

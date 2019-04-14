@@ -6,7 +6,7 @@ import { Size, Renderer, Color } from "./includes";
 
 
 
-export class Screen implements Renderer {
+export class Window implements Renderer {
   RenderHeader() {
     throw new Error("Method not implemented.");
   }
@@ -45,10 +45,6 @@ export class Screen implements Renderer {
       width: $width,
       height: $height
     };
-
   }
-
-
-
 }
 
