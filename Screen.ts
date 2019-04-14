@@ -3,7 +3,7 @@ import { execSync } from 'child_process'
 import { Size, Renderer, Color, Rect } from "./includes";
 
 
-export class Screen implements Renderer {
+export class Screen extends Array<string> implements Renderer {
   RenderHeader() {
     throw new Error("Method not implemented.");
   }
@@ -35,6 +35,8 @@ export class Screen implements Renderer {
 
   public constructor(
   ) {
+    super();
+
     var $width: number = parseInt(execSync("tput cols").toString());
     var $height: number = parseInt(execSync("tput lines").toString());
 
@@ -49,7 +51,6 @@ export class Screen implements Renderer {
       height: $height
 
     }
-
   }
 
 

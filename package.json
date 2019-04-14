@@ -11,7 +11,8 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --project ./tsconfig.json main.ts"
+    "start": "ts-node --project ./tsconfig.json main.ts",
+    "rows": "npm run test"
   },
   "repository": {
     "type": "git",

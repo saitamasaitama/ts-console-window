@@ -44,7 +44,7 @@ export function Fill(c: string, rect: Common.Rect) {
       process.stdout.write(c);
     }
   }
-
+  ResetColor();
 
   process.stdout.write(`[${rect.width}:${rect.height}]`);
 }
