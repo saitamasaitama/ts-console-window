@@ -14,24 +14,22 @@ Consoler.Clear();
 /*
 windowsの時は
 echo 'exec winpty bash' >> ~/.bash_profile */
+process.stdin.setEncoding('utf8');
 process.stdin.setRawMode(true);
 
 
-process.stdin.on("data", ($k) => {
+var $s = new Screen();
+$s.CreateSubWindow();
 
+$s.Refresh();
+process.stdin.on("data", ($k) => {
   if ($k == '\u0003') {
     process.exit();
   }
-  process.stdout.write("k" + $k);
+  $s.Sendkey($k);
 });
 
 
-
-
-var $s = new Screen();
-
-$s.Refresh();
-
 setTimeout(() => {
   process.exit(2);
-}, 5000);
+},10000);

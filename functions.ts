@@ -4,7 +4,7 @@ import { exists } from "fs";
 
 
 
-export function Write(src: string, s: Size, align: Common.Align = Common.Align.LEFT) {
+export function Write(src: string, s: Size = {width:100,height:1}, align: Common.Align = Common.Align.LEFT) {
   let x = 0;
   let y = 0;
   let c = 0;
@@ -105,17 +105,8 @@ export function Clear() {
 
 export function Fill(c: string, rect: Common.Rect) {
 
-  for (var y = 0; y < rect.height; y++) {
-    for (var x = 0; x < rect.width >> 1; x++) {
-      //
-      MoveTo(x, y);
-      process.stdout.write(c);
-    }
-  }
-
-
-  for (var y = 0; y < rect.height; y++) {
-    for (var x = rect.width >> 1; x < rect.width; x++) {
+  for (var y = rect.top; y < rect.top + rect.height; y++) {
+    for (var x = rect.left; x < rect.left + rect.width; x++) {
       //
       MoveTo(x, y);
       process.stdout.write(c);

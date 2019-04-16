@@ -1,27 +1,34 @@
 import * as Consoler from "./functions"
 import { execSync } from 'child_process'
 import { Size, Renderer, Color, Rect } from "./includes";
+import { Window } from "./Window";
 import { Align } from "./Common";
 
 
-export class Screen extends Array<string> implements Renderer {
+export class Screen extends Array<Window> implements Renderer {
   public bound: Rect;
   public size: Size;
 
-
   public title: string = "test";
   public color: Color = Color.YELLOW;
-  public backgroundColor: Color = Color.GREEN;
+  public backgroundColor: Color = Color.BLACK;
 
+  public Sendkey(k){
+    process.stdout.write(k);
+    if(k==13){
+      console.log("Enter");
+    }
+    //console.dir(k);
+    this[0].Sendkey(k);
+  }
 
   RenderHeader() {
     Consoler.MoveTo(0,0);
     Consoler.SetColorSet(Color.BLACK,Color.WHITE,
-      ()=>Consoler.Write("FOOTER",{width:this.size.width,height:1},Align.CENTER)
+      ()=>Consoler.Write("HEADER",{width:this.size.width,height:1},Align.CENTER)
     );
   }
   RenderBody() {
-//    throw new Error("Method not implemented.");
   }
   RenderFooter() {
 
@@ -29,7 +36,6 @@ export class Screen extends Array<string> implements Renderer {
     Consoler.SetColorSet(Color.WHITE,Color.BLUE,
       ()=>Consoler.Write("FOOTER",{width:this.size.width,height:1},Align.RIGHT)
     );
-
   }
 
   public Clear() {
@@ -50,6 +56,9 @@ export class Screen extends Array<string> implements Renderer {
     this.RenderHeader();
     this.RenderBody();
     this.RenderFooter();
+    this.forEach(w=>{
+      w.Refresh();
+    });
   }
 
 
@@ -72,7 +81,16 @@ export class Screen extends Array<string> implements Renderer {
 
     }
   }
+  public CreateSubWindow():Window{
+    let w = new Window({
+        left:this.bound.left+1,
+        top:this.bound.top+1,
+        width:this.bound.width >> 1,
+        height:(this.bound.height -2)>>1,
+      }
+    );
 
-
-
+    this.push(w);
+    return w;
+  }
 }
