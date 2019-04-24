@@ -17,17 +17,9 @@ echo 'exec winpty bash' >> ~/.bash_profile */
 process.stdin.setEncoding('utf8');
 process.stdin.setRawMode(true);
 
-
 var $s = new Screen();
-$s.CreateSubWindow();
-
-$s.Refresh();
-process.stdin.on("data", ($k) => {
-  if ($k == '\u0003') {
-    process.exit();
-  }
-  $s.Sendkey($k);
-});
+//windowを足す
+//$s.Add();
 
 
 setTimeout(() => {

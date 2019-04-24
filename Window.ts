@@ -3,10 +3,9 @@ import { Size, Renderer, Color,Rect } from "./includes";
 import { Align } from "./Common";
 import * as fs from "fs";
 
-export abstract class WindowBase implements Renderer{
+export abstract class Window implements Renderer{
 
-  public parent:WindowBase;
-  
+  public parent:Window;
   public color: Color = Color.WHITE;
   public backgroundColor: Color = Color.BLACK;
   public title: string = "test";
@@ -25,7 +24,13 @@ export abstract class WindowBase implements Renderer{
     //範囲指定書き込みにする
     Consoler.Write(src);
   }
-
+  public Rect(r:Rect):Rect=>{
+    left:this.bound.left+r.left,
+    top:this.bound.top+r.top,
+    width:r.width,
+    height:r.width
+  };
+  
 
   public abstract Sendkey(k);
   public abstract RenderBody();
@@ -50,9 +55,7 @@ export abstract class WindowBase implements Renderer{
     this.RenderBody();
   }
 
-  public constructor(
-      r:Rect
-      ) {
+  public constructor(r:Rect) {
     this.bound = {
        width: r.width,
        height: r.height,
@@ -112,7 +115,7 @@ interface SingleList{
   Back(); //←など　（もしくは最上部でEnter)
 }
 
-export class Window extends WindowBase implements Renderer,SingleList {
+export class SimpleListWindow extends Window implements Renderer,SingleList {
   private index=0;
 
   protected items:string[];
